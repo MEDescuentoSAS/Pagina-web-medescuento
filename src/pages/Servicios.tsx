@@ -80,7 +80,13 @@ const Servicios = () => {
                 <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                   <CardHeader className="bg-[#43d9cb]">
                     <CardTitle className="flex items-center gap-3 text-2xl font-bold text-green-800">
-                      <service.icon className="w-8 h-8" />
+                      <service.icon className={`w-8 h-8 ${
+                        index === 0 ? 'text-purple-600' : 
+                        index === 1 ? 'text-red-600' : 
+                        index === 2 ? 'text-yellow-500' : 
+                        index === 3 ? 'text-red-500' : 
+                        index === 4 ? 'text-orange-500' : ''
+                      }`} />
                       {service.title}
                     </CardTitle>
                   </CardHeader>
