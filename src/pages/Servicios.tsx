@@ -112,7 +112,7 @@ const Servicios = () => {
                       <Card className="overflow-hidden">
                         <CardContent className="p-0">
                           <img 
-                            src="/medescuento-renewed-web/Galeria/olivos3.png" 
+                            src="/Galeria/olivos3.png" 
                             alt="Los Olivos"
                             className="w-full h-48 object-contain bg-white"
                             loading="lazy"
@@ -122,7 +122,7 @@ const Servicios = () => {
                       <Card className="overflow-hidden">
                         <CardContent className="p-0">
                           <img 
-                            src="/medescuento-renewed-web/Galeria/renacer.jpg" 
+                            src="/Galeria/renacer.jpg" 
                             alt="Jardines de Renacer"
                             className="w-full h-48 object-cover"
                             loading="lazy"
@@ -140,7 +140,7 @@ const Servicios = () => {
                       <Card className="overflow-hidden">
                         <CardContent className="p-0">
                           <img 
-                            src="/medescuento-renewed-web/Galeria/guiamedica.jpg" 
+                            src="/Galeria/guiamedica.jpg" 
                             alt="Guía Médica - Contamos con más de 2.000 prestadores de servicios de salud"
                             className="w-full h-auto object-cover"
                             loading="lazy"
@@ -158,7 +158,7 @@ const Servicios = () => {
                       <Card className="overflow-hidden">
                         <CardContent className="p-0">
                           <img 
-                          src="/medescuento-renewed-web/Galeria/capacitacion2.jpg" 
+                          src="/Galeria/capacitacion2.jpg" 
                           alt="Capacitación con énfasis en Coaching"
                           className="w-full h-48 object-cover"
                           loading="lazy"
@@ -168,7 +168,7 @@ const Servicios = () => {
                       <Card className="overflow-hidden">
                         <CardContent className="p-0">
                           <img 
-                          src="/medescuento-renewed-web/Galeria/capacitacion.jpg" 
+                          src="/Galeria/capacitacion.jpg" 
                           alt="Capacitación empresarial"
                           className="w-full h-48 object-cover"
                           loading="lazy"
@@ -185,7 +185,7 @@ const Servicios = () => {
                       <Card className="overflow-hidden">
                         <CardContent className="p-0">
                           <img 
-                          src="/medescuento-renewed-web/Galeria/pausa2.jpg" 
+                          src="/Galeria/pausa2.jpg" 
                           alt="Pausas Activas Físicas y Mentales"
                           className="w-full h-48 object-cover"
                           loading="lazy"
@@ -195,7 +195,7 @@ const Servicios = () => {
                       <Card className="overflow-hidden">
                         <CardContent className="p-0">
                           <img 
-                          src="/medescuento-renewed-web/Galeria/pausa1.jpg" 
+                          src="/Galeria/pausa1.jpg" 
                           alt="Pausas activas en empresa"
                           className="w-full h-48 object-cover"
                           loading="lazy"
@@ -212,7 +212,7 @@ const Servicios = () => {
                         <Card className="overflow-hidden">
                           <CardContent className="p-0">
                             <img 
-                            src="/medescuento-renewed-web/Galeria/consultoria.jpg" 
+                            src="/Galeria/consultoria.jpg" 
                             alt="Consultorías Empresariales"
                             className="w-full h-48 object-cover"
                             loading="lazy"
@@ -222,7 +222,7 @@ const Servicios = () => {
                         <Card className="overflow-hidden">
                           <CardContent className="p-0">
                             <img 
-                            src="/medescuento-renewed-web/Galeria/consultoria2.jpg" 
+                            src="/Galeria/consultoria2.jpg" 
                             alt="Consultoría empresarial"
                             className="w-full h-48 object-cover"
                             loading="lazy"

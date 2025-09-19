@@ -6,16 +6,16 @@ import { useEffect, useState } from "react";
 
 const Empresa = () => {
   const images = [
-    "/medescuento-renewed-web/Galeria/empresa9.jpg",
-    "/medescuento-renewed-web/Galeria/empresa2.jpeg",
-    "/medescuento-renewed-web/Galeria/empresa3.jpeg",
-    "/medescuento-renewed-web/Galeria/empresa4.jpeg",
-    "/medescuento-renewed-web/Galeria/empresa5.jpeg",
-    "/medescuento-renewed-web/Galeria/empresa6.jpeg",
-    "/medescuento-renewed-web/Galeria/empresa7.jpeg",
-    "/medescuento-renewed-web/Galeria/empresa8.jpeg",
-    "/medescuento-renewed-web/Galeria/empresa10.jpg",
-    "/medescuento-renewed-web/Galeria/empresa1.jpeg",
+    "/Galeria/empresa9.jpg",
+    "/Galeria/empresa2.jpeg",
+    "/Galeria/empresa3.jpeg",
+    "/Galeria/empresa4.jpeg",
+    "/Galeria/empresa5.jpeg",
+    "/Galeria/empresa6.jpeg",
+    "/Galeria/empresa7.jpeg",
+    "/Galeria/empresa8.jpeg",
+    "/Galeria/empresa10.jpg",
+    "/Galeria/empresa1.jpeg",
   ];
 
   const [current, setCurrent] = useState(0);
