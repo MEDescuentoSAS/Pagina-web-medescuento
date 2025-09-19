@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://andreajg1024.github.io/medescuento-renewed-web",
+  "homepage": "https://www.medescuento.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
