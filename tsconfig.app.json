@@ -26,5 +26,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "public/Galeria.tsx"]
+  "include": ["src", "public/Galeria.tsx"],
+  "exclude": ["node_modules", "dist", "api"]
 }
