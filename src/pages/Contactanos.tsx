@@ -9,16 +9,20 @@ import { useState } from "react";
 
 const Contactanos = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
+    nombre: "",
+    cedula: "",
+    celular: "",
+    direccion: "",
+    fecha: "",
+    fechaNacimiento: "",
+    correo: "",
+    ciudad: ""
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:medescuentosas@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
-      `Nombre: ${formData.name}\nCorreo: ${formData.email}\n\nMensaje:\n${formData.message}`
+    const mailtoLink = `mailto:medescuentosas@gmail.com?subject=${encodeURIComponent("Solicitud de Afiliación")}&body=${encodeURIComponent(
+      `Nombre: ${formData.nombre}\nCédula: ${formData.cedula}\nCelular: ${formData.celular}\nDirección: ${formData.direccion}\nFecha: ${formData.fecha}\nFecha de Nacimiento: ${formData.fechaNacimiento}\nCorreo: ${formData.correo}\nCiudad: ${formData.ciudad}`
     )}`;
     window.location.href = mailtoLink;
   };
@@ -109,19 +113,19 @@ const Contactanos = () => {
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-green-800">
-                  ENVÍANOS UN MENSAJE AL CORREO
+                  DILIGENCIA TU INFORMACIÓN PARA AFILIARTE
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-bold text-black-700 mb-2">
-                      Nombre Completo
+                    <label htmlFor="nombre" className="block text-sm font-bold text-black-700 mb-2">
+                      Nombre
                     </label>
                     <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="nombre"
+                      name="nombre"
+                      value={formData.nombre}
                       onChange={handleChange}
                       required
                       placeholder="Tu nombre completo"
@@ -130,14 +134,90 @@ const Contactanos = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-bold text-black-700 mb-2">
+                    <label htmlFor="cedula" className="block text-sm font-bold text-black-700 mb-2">
+                      Cédula/Número de Identificación
+                    </label>
+                    <Input
+                      id="cedula"
+                      name="cedula"
+                      value={formData.cedula}
+                      onChange={handleChange}
+                      required
+                      placeholder="Número de cédula"
+                      className="border-blue-500 border-2 focus:border-blue-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="celular" className="block text-sm font-bold text-black-700 mb-2">
+                      Número de Celular
+                    </label>
+                    <Input
+                      id="celular"
+                      name="celular"
+                      type="tel"
+                      value={formData.celular}
+                      onChange={handleChange}
+                      required
+                      placeholder="Número de celular"
+                      className="border-blue-500 border-2 focus:border-blue-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="direccion" className="block text-sm font-bold text-black-700 mb-2">
+                      Dirección de Residencia
+                    </label>
+                    <Input
+                      id="direccion"
+                      name="direccion"
+                      value={formData.direccion}
+                      onChange={handleChange}
+                      required
+                      placeholder="Tu dirección"
+                      className="border-blue-500 border-2 focus:border-blue-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="fecha" className="block text-sm font-bold text-black-700 mb-2">
+                      Fecha de hoy
+                    </label>
+                    <Input
+                      id="fecha"
+                      name="fecha"
+                      type="date"
+                      value={formData.fecha}
+                      onChange={handleChange}
+                      required
+                      className="border-blue-500 border-2 focus:border-blue-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="fechaNacimiento" className="block text-sm font-bold text-black-700 mb-2">
+                      Fecha de Nacimiento
+                    </label>
+                    <Input
+                      id="fechaNacimiento"
+                      name="fechaNacimiento"
+                      type="date"
+                      value={formData.fechaNacimiento}
+                      onChange={handleChange}
+                      required
+                      className="border-blue-500 border-2 focus:border-blue-600"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="correo" className="block text-sm font-bold text-black-700 mb-2">
                       Correo Electrónico
                     </label>
                     <Input
-                      id="email"
-                      name="email"
+                      id="correo"
+                      name="correo"
                       type="email"
-                      value={formData.email}
+                      value={formData.correo}
                       onChange={handleChange}
                       required
                       placeholder="tu@correo.com"
@@ -146,38 +226,22 @@ const Contactanos = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-bold text-black-700 mb-2">
-                      Asunto
+                    <label htmlFor="ciudad" className="block text-sm font-bold text-black-700 mb-2">
+                      Ciudad
                     </label>
                     <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
+                      id="ciudad"
+                      name="ciudad"
+                      value={formData.ciudad}
                       onChange={handleChange}
                       required
-                      placeholder="¿En qué podemos ayudarte?"
-                      className="border-blue-500 border-2 focus:border-blue-600"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-bold text-black-700 mb-2">
-                      Mensaje
-                    </label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      placeholder="Escribe tu mensaje aquí..."
-                      rows={5}
+                      placeholder="Tu ciudad"
                       className="border-blue-500 border-2 focus:border-blue-600"
                     />
                   </div>
 
                   <Button type="submit" className="w-full bg-green-600 hover:bg-green-700">
-                    Enviar Mensaje
+                    Enviar Solicitud de Afiliación
                   </Button>
                 </form>
               </CardContent>

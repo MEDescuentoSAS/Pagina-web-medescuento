@@ -12,6 +12,7 @@ const Header = () => {
     { label: "EMPRESA", href: "/empresa" },
     { label: "SERVICIOS", href: "/servicios" },
     { label: "BIENESTAR", href: "/bienestar" },
+    { label: "TURISMO SALUDABLE", href: "/turismo-saludable" },
     { label: "CONTÁCTANOS", href: "/contactanos" },
   ];
 

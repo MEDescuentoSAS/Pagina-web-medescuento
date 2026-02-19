@@ -8,7 +8,7 @@ interface VisitResponse {
 }
 
 export const useVisitCounter = () => {
-  const [visitCount, setVisitCount] = useState<number>(0);
+  const [visitCount, setVisitCount] = useState<number>(22000);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,6 +42,16 @@ export const useVisitCounter = () => {
         if (data.success) {
           setVisitCount(data.visits);
           setError(null);
+          
+          // Enviar evento a Google Analytics
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'visit_recorded', {
+              'visit_count': data.visits,
+              'timestamp': data.lastUpdated,
+              'event_category': 'engagement',
+              'event_label': 'page_visit'
+            });
+          }
         } else {
           throw new Error(data.error || 'Failed to record visit');
         }
@@ -53,9 +63,18 @@ export const useVisitCounter = () => {
         // Fallback: usar localStorage si la API falla
         try {
           const localCount = localStorage.getItem('visitCount');
-          const newCount = (parseInt(localCount || '0', 10) || 0) + 1;
+          const newCount = (parseInt(localCount || '22000', 10) || 22000) + 1;
           localStorage.setItem('visitCount', newCount.toString());
           setVisitCount(newCount);
+          
+          // Enviar evento a Google Analytics para fallback
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'visit_recorded_fallback', {
+              'visit_count': newCount,
+              'event_category': 'engagement',
+              'event_label': 'offline_visit'
+            });
+          }
         } catch (storageError) {
           console.error('Storage error:', storageError);
         }

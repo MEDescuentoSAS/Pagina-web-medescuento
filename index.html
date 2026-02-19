@@ -17,6 +17,21 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+      
+      // Evento personalizado para rastrear contador de visitas
+      gtag('event', 'page_view', {
+        'page_title': document.title,
+        'page_location': window.location.href
+      });
+    </script>
+    
     <!-- End Single Page Apps for GitHub Pages -->
   </head>
 

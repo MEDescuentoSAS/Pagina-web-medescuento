@@ -16,7 +16,7 @@ interface VisitData {
 }
 
 const initializeData = (): VisitData => ({
-  count: 0,
+  count: 22000,
   lastUpdated: new Date().toISOString(),
   history: [],
 });
