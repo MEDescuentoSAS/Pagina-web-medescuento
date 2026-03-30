@@ -7,16 +7,6 @@ const ServicesSection = () => {
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        {/* Visit Counter */}
-        <div className="text-center mb-8">
-          <div className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg">
-            <div className="flex items-center gap-3">
-              <span className="text-lg font-bold">Visitantes:</span>
-              <span className="text-2xl font-bold">22,024</span>
-            </div>
-          </div>
-        </div>
-
         {/* Main heading */}
         <div className="text-center mb-12">
           <div className="inline-block bg-accent text-white px-8 py-4 rounded-full mb-8">

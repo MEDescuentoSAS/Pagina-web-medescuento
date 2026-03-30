@@ -10,7 +10,7 @@ import Bienestar from "./pages/Bienestar";
 import TurismoSaludable from "./pages/TurismoSaludable";
 import Contactanos from "./pages/Contactanos";
 import NotFound from "./pages/NotFound";
-// import { VisitCounter } from "./components/VisitCounter";
+import { VisitCounter } from "./components/VisitCounter";
 
 const queryClient = new QueryClient();
 
@@ -30,7 +30,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {/* <VisitCounter /> */}
+        <VisitCounter />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
