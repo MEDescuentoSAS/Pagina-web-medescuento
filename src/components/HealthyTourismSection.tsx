@@ -1,3 +1,4 @@
+// Importaciones usando alias para mayor claridad y mantenibilidad
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CountryFlag from 'react-country-flag';

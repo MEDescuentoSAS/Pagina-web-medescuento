@@ -5,7 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "baseUrl": ".",
+   // Alias configurados para importaciones limpias
     "paths": {
       "@/*": ["./src/*"]
     },
@@ -15,5 +15,5 @@
     "allowJs": true,
     "noUnusedLocals": false,
     "strictNullChecks": false
-  }
+  },
 }

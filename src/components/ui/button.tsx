@@ -1,3 +1,7 @@
+/**
+ * Componente Button reutilizable para la UI.
+ * Recibe props estándar de botón y estilos personalizados.
+ */
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"

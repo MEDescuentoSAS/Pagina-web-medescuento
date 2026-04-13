@@ -1,3 +1,8 @@
+/**
+ * Hook personalizado para manejar el contador de visitas.
+ * Incluye fallback y manejo de errores.
+ */
+// Tipos e interfaces para garantizar el tipado estricto en el hook
 import { useEffect, useState } from 'react';
 
 interface VisitResponse {
@@ -18,7 +23,7 @@ export const useVisitCounter = () => {
         setIsLoading(true);
         
         let apiUrl = '/api/visits';
-        
+        // Uso de import.meta.env.MODE para detectar el entorno de ejecución (compatible con Vite)
         if (import.meta.env.MODE === 'development') {
           
           apiUrl = '/api/visits';
@@ -55,6 +60,7 @@ export const useVisitCounter = () => {
         }
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+        // Aquí se maneja el error y se activa el fallback
         console.warn('Warning: Could not connect to API, using localStorage fallback:', errorMessage);
         setError(null); // No mostrar error al usuario, usar fallback silenciosamente
         
