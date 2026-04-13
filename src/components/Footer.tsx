@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // 👈 importamos Link
+import { Link } from "react-router-dom"; 
 import medescuentoLogo from "@/assets/logomedescuento.png";
 
 const Footer = () => {

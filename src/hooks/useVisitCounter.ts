@@ -17,12 +17,10 @@ export const useVisitCounter = () => {
       try {
         setIsLoading(true);
         
-        // Intentar usar la API de Vercel
         let apiUrl = '/api/visits';
         
-        // Si está en desarrollo y no está en Vercel, usar localhost
-        if (process.env.NODE_ENV === 'development') {
-          // En desarrollo, la API estará en el mismo servidor Vite
+        if (import.meta.env.MODE === 'development') {
+          
           apiUrl = '/api/visits';
         }
 

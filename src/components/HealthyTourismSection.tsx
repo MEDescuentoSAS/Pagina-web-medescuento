@@ -1,10 +1,7 @@
-
-
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CountryFlag from 'react-country-flag';
 
-// Traducciones de títulos y banderas por cuadro
 const cuadros = [
   {
     titulo: ["SERVICIOS INTERNACIONALES", "INTERNATIONAL SERVICES"],
