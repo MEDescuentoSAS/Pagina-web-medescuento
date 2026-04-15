@@ -1,19 +1,14 @@
 /**
  * Hook personalizado para manejar el contador de visitas.
- * Incluye fallback y manejo de errores.
+ * Ahora usa Firestore como backend global.
+ * Mantiene Google Analytics y evita localStorage.
  */
-// Tipos e interfaces para garantizar el tipado estricto en el hook
-import { useEffect, useState } from 'react';
 
-interface VisitResponse {
-  success: boolean;
-  visits: number;
-  lastUpdated?: string;
-  error?: string;
-}
+import { useEffect, useState } from 'react';
+import { db, doc, getDoc, updateDoc, increment, setDoc } from '@/lib/firebase';
 
 export const useVisitCounter = () => {
-  const [visitCount, setVisitCount] = useState<number>(22000);
+  const [visitCount, setVisitCount] = useState<number>(22000); // valor inicial
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,73 +16,58 @@ export const useVisitCounter = () => {
     const recordVisit = async () => {
       try {
         setIsLoading(true);
-        
-        let apiUrl = '/api/visits';
-        // Uso de import.meta.env.MODE para detectar el entorno de ejecución (compatible con Vite)
-        if (import.meta.env.MODE === 'development') {
-          
-          apiUrl = '/api/visits';
-        }
 
-        const response = await fetch(apiUrl, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        // 📌 Documento global en Firestore donde se almacenará el contador
+        const counterRef = doc(db, "stats", "visits");
 
-        if (!response.ok) {
-          throw new Error(`Failed to record visit: ${response.statusText}`);
-        }
+        // 📌 Verificar si el documento existe
+        const snap = await getDoc(counterRef);
 
-        const data: VisitResponse = await response.json();
-        
-        if (data.success) {
-          setVisitCount(data.visits);
-          setError(null);
-          
-          // Enviar evento a Google Analytics
-          if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'visit_recorded', {
-              'visit_count': data.visits,
-              'timestamp': data.lastUpdated,
-              'event_category': 'engagement',
-              'event_label': 'page_visit'
-            });
-          }
+        let newCount = 0;
+
+        if (snap.exists()) {
+          // Si existe: obtener el contador actual
+          const serverCount = snap.data().count || 22000;
+
+          // 📌 Sumar +1 de forma segura
+          await updateDoc(counterRef, {
+            count: increment(1),
+            lastUpdated: new Date().toISOString(),
+          });
+
+          newCount = serverCount + 1;
         } else {
-          throw new Error(data.error || 'Failed to record visit');
+          // Si no existe: crear el contador desde 22.000
+          await setDoc(counterRef, {
+            count: 22000,
+            lastUpdated: new Date().toISOString(),
+          });
+
+          newCount = 22000;
         }
+
+        // Actualizar estado local
+        setVisitCount(newCount);
+        setError(null);
+
+        // 📊 Google Analytics (esto es tuyo, lo dejo tal cual)
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'visit_recorded', {
+            visit_count: newCount,
+            event_category: 'engagement',
+            event_label: 'page_visit'
+          });
+        }
+
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-        // Aquí se maneja el error y se activa el fallback
-        console.warn('Warning: Could not connect to API, using localStorage fallback:', errorMessage);
-        setError(null); // No mostrar error al usuario, usar fallback silenciosamente
-        
-        // Fallback: usar localStorage si la API falla
-        try {
-          const localCount = localStorage.getItem('visitCount');
-          const newCount = (parseInt(localCount || '22000', 10) || 22000) + 1;
-          localStorage.setItem('visitCount', newCount.toString());
-          setVisitCount(newCount);
-          
-          // Enviar evento a Google Analytics para fallback
-          if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'visit_recorded_fallback', {
-              'visit_count': newCount,
-              'event_category': 'engagement',
-              'event_label': 'offline_visit'
-            });
-          }
-        } catch (storageError) {
-          console.error('Storage error:', storageError);
-        }
+        console.error("Error con Firestore:", err);
+        setError("No se pudo actualizar el contador");
       } finally {
         setIsLoading(false);
       }
     };
 
-    // Registrar la visita solo una vez cuando el componente se monta
+    // Ejecutar solo una vez
     recordVisit();
   }, []);
 
