@@ -22,7 +22,7 @@ const ServicesSection = () => {
               <span className="font-bold text-lg">MÁS DE 6000 AFILIADOS</span>
             </div>
             <div className="bg-[#43d9cb] text-white px-6 py-4 rounded-full text-center">
-              <span className="font-bold text-lg">MÁS DE 2000 CONVENIOS, ESTRATEGIAS A NIVEL NACIONAL</span>
+              <span className="font-bold text-lg">MÁS DE 2000 CONVENIOS ESTRATEGICOS</span>
             </div>
             <div className="bg-[#43d9cb] text-white px-6 py-4 rounded-full text-center">
               <span className="font-bold text-lg">10 CIUDADES CON COBERTURA</span>

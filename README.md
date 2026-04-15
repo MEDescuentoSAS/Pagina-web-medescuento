@@ -1,21 +1,32 @@
 # Buenas Prácticas y Arquitectura
 
-## Estructura de Carpetas (comentarios para desarrolladores)
-- components: Componentes reutilizables de la UI. Aquí se centralizan todos los elementos visuales que pueden ser usados en distintas partes de la aplicación.
-- ui: Componentes de interfaz genéricos y reutilizables, como botones, tarjetas, formularios, etc.
-- hooks: Hooks personalizados para lógica reutilizable. Ejemplo: `useVisitCounter` para el contador de visitas.
-- lib: Funciones utilitarias y helpers. Aquí se colocan funciones auxiliares que pueden ser usadas por varios módulos.
-- pages: Páginas principales de la aplicación. Cada archivo representa una vista o ruta principal.
-- public: Archivos estáticos accesibles directamente, como imágenes y robots.txt.
-- api: Endpoints de backend (por ejemplo, para el contador de visitas).
+## Estructura de Carpetas
+- **components/**: Componentes reutilizables de la UI. Centraliza elementos visuales reutilizables.
+- **components/ui/**: Componentes de interfaz genéricos (botones, tarjetas, formularios, etc.).
+- **hooks/**: Hooks personalizados para lógica reutilizable. Ejemplo: `useVisitCounter` para el contador de visitas.
+- **lib/**: Funciones utilitarias y helpers compartidos.
+- **pages/**: Vistas principales de la aplicación, cada archivo representa una ruta.
+- **public/**: Archivos estáticos accesibles directamente (imágenes, robots.txt, etc.).
+- **api/**: Endpoints backend (por ejemplo, para el contador de visitas).
 
-## Lineamientos Técnicos
-- Uso de rutas alias (`@/components`, `@/hooks`, etc.) para importaciones limpias.
-- Tipado estricto con TypeScript en estados, props y respuestas de API.
-- Documentación mínima obligatoria (JSDoc) en hooks y funciones clave.
-- Centralización de lógica común en lib.
-- Manejo de errores y fallback en hooks críticos (ej. uso de localStorage en el contador de visitas).
-- Separación clara de responsabilidades en la estructura de carpetas.
+## Principios de Arquitectura
+- **Componentización**: Divide la UI en componentes pequeños, reutilizables y de única responsabilidad.
+- **Separación de responsabilidades**: Mantén lógica, presentación y datos desacoplados.
+- **Hooks para lógica reutilizable**: Extrae lógica repetida en hooks personalizados.
+- **Centralización de utilidades**: Usa `lib/` para helpers y lógica común.
+- **Tipado estricto**: Usa TypeScript para tipar props, estados y respuestas de API.
+- **Documentación mínima**: Usa JSDoc en hooks y funciones clave.
+- **Manejo de errores**: Implementa fallback y manejo de errores en hooks críticos (ejemplo: uso de localStorage).
+- **Importaciones limpias**: Usa rutas alias (`@/components`, `@/hooks`, etc.) para evitar rutas relativas largas.
+- **Estilos desacoplados**: Utiliza Tailwind CSS para estilos utilitarios y consistentes.
+
+## Buenas Prácticas
+- Nombra archivos y carpetas en inglés y en minúsculas, usando kebab-case o camelCase según convención del proyecto.
+- Prefiere componentes funcionales y hooks sobre clases.
+- Mantén los componentes lo más puros posible (sin efectos secundarios innecesarios).
+- Evita lógica compleja en los componentes de presentación; extrae a hooks o utilidades.
+- Usa destructuring para props y estados.
+- Documenta props y funciones públicas.
 
 ## Ejemplo de Importación con Alias
 ```ts
@@ -35,4 +46,20 @@ interface VisitResponse {
 ```ts
 /**
  * Hook para manejar el contador de visitas con fallback y manejo de errores.
+ * @returns {number} count - Número de visitas
  */
+```
+
+## Ejemplo de Manejo de Errores en un Hook
+```ts
+try {
+  // lógica principal
+} catch (error) {
+  // fallback o manejo de error
+}
+```
+
+## Recursos Recomendados
+- [Guía de Componentes React](https://react.dev/learn/component-basics)
+- [Convenciones de TypeScript](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
+- [Tailwind CSS Best Practices](https://tailwindcss.com/docs/reusing-styles)
