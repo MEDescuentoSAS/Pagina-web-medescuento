@@ -30,6 +30,7 @@ const Footer = () => {
     <footer className="bg-[#43d9cb] text-black py-12">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8">
+          
           {/* Logo and Description */}
           <div className="md:col-span-2">
             <img 
@@ -42,6 +43,7 @@ const Footer = () => {
               Un mundo de privilegios a su alcance. Brindamos servicios de salud 
               con descuentos especiales para tu empresa y familia.
             </p>
+
             <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
                 <a
@@ -68,6 +70,7 @@ const Footer = () => {
               <li><Link to="/empresa" className="hover:opacity-100 transition-opacity">EMPRESA</Link></li>
               <li><Link to="/servicios" className="hover:opacity-100 transition-opacity">SERVICIOS</Link></li>
               <li><Link to="/bienestar" className="hover:opacity-100 transition-opacity">BIENESTAR</Link></li>
+              <li><Link to="/turismo-saludable" className="hover:opacity-100 transition-opacity">TURISMO SALUDABLE</Link></li>
               <li><Link to="/contactanos" className="hover:opacity-100 transition-opacity">CONTÁCTANOS</Link></li>
             </ul>
           </div>
@@ -83,6 +86,7 @@ const Footer = () => {
               <p>2:00 PM - 4:15 PM</p>
             </div>
           </div>
+
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm opacity-60">

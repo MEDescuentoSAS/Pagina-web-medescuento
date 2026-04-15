@@ -12,6 +12,9 @@ import Contactanos from "./pages/Contactanos";
 import NotFound from "./pages/NotFound";
 import { VisitCounter } from "./components/VisitCounter";
 
+// 👉 Import del ScrollToTop
+import ScrollToTop from "./components/ScrollToTop";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -19,7 +22,11 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+
       <BrowserRouter>
+        {/* 👇 Esto hace que SIEMPRE arranque arriba al cambiar de ruta */}
+        <ScrollToTop />
+
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/empresa" element={<Empresa />} />
@@ -30,6 +37,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+
         <VisitCounter />
       </BrowserRouter>
     </TooltipProvider>

@@ -6,12 +6,12 @@ import CountryFlag from 'react-country-flag';
 // ─── Imágenes del carrusel ───────────────────────────────────────────────────
 const imagenesCarrusel = [
   "/Galeria/paisaje1.jpeg",
-  "/Galeria/londres.jpeg",
+  "/Galeria/londres.jpg",
   "/Galeria/miami.jpg",
   "/Galeria/australia.webp",
   "/Galeria/nuevayork.jpeg",
-  "/Galeria/roma.jpg",
-  "/Galeria/peru.jpg",
+  "/Galeria/roma.jpeg",
+  "/Galeria/peru.jpeg",
 ];
 
 const imagenesIntro = [
@@ -370,30 +370,84 @@ const HealthyTourismSection = () => {
   return (
     <section className="bg-gradient-to-b from-slate-50 to-white">
 
-      {/* ── CARRUSEL ── */}
-      <div className="relative h-[340px] w-full overflow-hidden mb-12">
-        <div
-          className="flex h-full transition-transform duration-700 ease-in-out"
-          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-        >
-          {imagenesCarrusel.map((src, i) => (
-            <div key={i} className="min-w-full h-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${src})` }} />
-          ))}
-        </div>
-        <button onClick={() => { goTo(currentSlide - 1); startAuto(); }}
-          className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl transition-colors"
-          aria-label="Anterior">‹</button>
-        <button onClick={() => { goTo(currentSlide + 1); startAuto(); }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl transition-colors"
-          aria-label="Siguiente">›</button>
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-          {imagenesCarrusel.map((_, i) => (
-            <button key={i} onClick={() => { goTo(i); startAuto(); }}
-              className={`w-2.5 h-2.5 rounded-full transition-colors ${i === currentSlide ? "bg-white" : "bg-white/40"}`} />
-          ))}
-        </div>
+{/* ── CARRUSEL ── */}
+<div className="relative h-[480px] w-full overflow-hidden mb-12">
+
+  {/* Fondo borroso */}
+  <div
+    className="absolute inset-0 bg-cover bg-center blur-xl scale-110"
+    style={{
+      backgroundImage: `url(${imagenesCarrusel[currentSlide]})`,
+      filter: "blur(22px)",
+    }}
+  />
+
+  {/* Capa oscura suave para que resalte la imagen principal */}
+  <div className="absolute inset-0 bg-black/20" />
+
+  {/* Slides */}
+  <div
+    className="relative flex h-full transition-transform duration-700 ease-in-out"
+    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+  >
+    {imagenesCarrusel.map((src, i) => (
+      <div
+        key={i}
+        className="min-w-full h-full flex items-center justify-center"
+      >
+        <img
+          src={src}
+          alt={`slide-${i}`}
+          className="max-h-full w-auto object-contain drop-shadow-xl"
+        />
       </div>
+    ))}
+  </div>
+
+  {/* Botón anterior */}
+  <button
+    onClick={() => {
+      goTo(currentSlide - 1);
+      startAuto();
+    }}
+    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 
+               text-white rounded-full w-10 h-10 flex items-center justify-center 
+               text-2xl transition"
+    aria-label="Anterior"
+  >
+    ‹
+  </button>
+
+  {/* Botón siguiente */}
+  <button
+    onClick={() => {
+      goTo(currentSlide + 1);
+      startAuto();
+    }}
+    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 
+               text-white rounded-full w-10 h-10 flex items-center justify-center 
+               text-2xl transition"
+    aria-label="Siguiente"
+  >
+    ›
+  </button>
+
+  {/* Indicadores */}
+  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+    {imagenesCarrusel.map((_, i) => (
+      <button
+        key={i}
+        onClick={() => {
+          goTo(i);
+          startAuto();
+        }}
+        className={`w-3 h-3 rounded-full transition-all ${
+          i === currentSlide ? "bg-white scale-110" : "bg-white/40"
+        }`}
+      />
+    ))}
+  </div>
+</div>
 
       {/* ── CUADROS ── */}
       <div className="container mx-auto px-4 py-10">
