@@ -16,18 +16,33 @@ const Contactanos = () => {
     fecha: "",
     fechaNacimiento: "",
     correo: "",
-    ciudad: ""
+    ciudad: "",
+    beneficiarios: "",
+    comentarios: ""
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:medescuentosas@gmail.com?subject=${encodeURIComponent("Solicitud de Afiliación")}&body=${encodeURIComponent(
-      `Nombre: ${formData.nombre}\nCédula: ${formData.cedula}\nCelular: ${formData.celular}\nDirección: ${formData.direccion}\nFecha: ${formData.fecha}\nFecha de Nacimiento: ${formData.fechaNacimiento}\nCorreo: ${formData.correo}\nCiudad: ${formData.ciudad}`
+    const mailtoLink = `mailto:medescuentosas@gmail.com?subject=${encodeURIComponent(
+      "Solicitud de Afiliación"
+    )}&body=${encodeURIComponent(
+      `Nombre: ${formData.nombre}
+Cédula: ${formData.cedula}
+Celular: ${formData.celular}
+Dirección: ${formData.direccion}
+Fecha: ${formData.fecha}
+Fecha de Nacimiento: ${formData.fechaNacimiento}
+Correo: ${formData.correo}
+Ciudad: ${formData.ciudad}
+Beneficiarios: ${formData.beneficiarios}
+Comentarios: ${formData.comentarios}`
     )}`;
     window.location.href = mailtoLink;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -41,7 +56,9 @@ const Contactanos = () => {
         <div className="max-w-6xl mx-auto space-y-12">
           {/* Hero Section */}
           <div className="text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold text-green-800">CONTÁCTANOS</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-green-800">
+              CONTÁCTANOS
+            </h1>
             <p className="text-xl text-black-600 max-w-3xl mx-auto">
               Estamos aquí para ayudarte. Ponte en contacto con nosotros
             </p>
@@ -57,10 +74,10 @@ const Contactanos = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-medium font-bold text-black-800 mb-4">
+                <p className="text-lg font-bold text-black-800 mb-4">
                   medescuentosas@gmail.com
                 </p>
-                <a 
+                <a
                   href="mailto:medescuentosas@gmail.com"
                   className="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
                 >
@@ -96,7 +113,7 @@ const Contactanos = () => {
                 <p className="text-lg font-bold text-black-800 mb-4">
                   +57 300 287 0540
                 </p>
-                <a 
+                <a
                   href="https://wa.me/573002870540"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -118,6 +135,7 @@ const Contactanos = () => {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Nombre */}
                   <div>
                     <label htmlFor="nombre" className="block text-sm font-bold text-black-700 mb-2">
                       Nombre
@@ -133,6 +151,7 @@ const Contactanos = () => {
                     />
                   </div>
 
+                  {/* Cédula */}
                   <div>
                     <label htmlFor="cedula" className="block text-sm font-bold text-black-700 mb-2">
                       Cédula/Número de Identificación
@@ -148,6 +167,7 @@ const Contactanos = () => {
                     />
                   </div>
 
+                  {/* Celular */}
                   <div>
                     <label htmlFor="celular" className="block text-sm font-bold text-black-700 mb-2">
                       Número de Celular
@@ -164,6 +184,7 @@ const Contactanos = () => {
                     />
                   </div>
 
+                  {/* Dirección */}
                   <div>
                     <label htmlFor="direccion" className="block text-sm font-bold text-black-700 mb-2">
                       Dirección de Residencia
@@ -179,6 +200,7 @@ const Contactanos = () => {
                     />
                   </div>
 
+                  {/* Fecha */}
                   <div>
                     <label htmlFor="fecha" className="block text-sm font-bold text-black-700 mb-2">
                       Fecha de hoy
@@ -194,6 +216,7 @@ const Contactanos = () => {
                     />
                   </div>
 
+                  {/* Fecha Nacimiento */}
                   <div>
                     <label htmlFor="fechaNacimiento" className="block text-sm font-bold text-black-700 mb-2">
                       Fecha de Nacimiento
@@ -209,6 +232,7 @@ const Contactanos = () => {
                     />
                   </div>
 
+                  {/* Correo */}
                   <div>
                     <label htmlFor="correo" className="block text-sm font-bold text-black-700 mb-2">
                       Correo Electrónico
@@ -225,6 +249,7 @@ const Contactanos = () => {
                     />
                   </div>
 
+                  {/* Ciudad */}
                   <div>
                     <label htmlFor="ciudad" className="block text-sm font-bold text-black-700 mb-2">
                       Ciudad
@@ -236,6 +261,36 @@ const Contactanos = () => {
                       onChange={handleChange}
                       required
                       placeholder="Tu ciudad"
+                      className="border-blue-500 border-2 focus:border-blue-600"
+                    />
+                  </div>
+
+                  {/* Beneficiarios */}
+                  <div>
+                    <label htmlFor="beneficiarios" className="block text-sm font-bold text-black-700 mb-2">
+                      Beneficiarios
+                    </label>
+                    <Textarea
+                      id="beneficiarios"
+                      name="beneficiarios"
+                      value={formData.beneficiarios}
+                      onChange={handleChange}
+                      placeholder="Nombres de los beneficiarios"
+                      className="border-blue-500 border-2 focus:border-blue-600"
+                    />
+                  </div>
+
+                  {/* Comentarios */}
+                  <div>
+                    <label htmlFor="comentarios" className="block text-sm font-bold text-black-700 mb-2">
+                      Comentarios
+                    </label>
+                    <Textarea
+                      id="comentarios"
+                      name="comentarios"
+                      value={formData.comentarios}
+                      onChange={handleChange}
+                      placeholder="Escribe aquí tus observaciones"
                       className="border-blue-500 border-2 focus:border-blue-600"
                     />
                   </div>
@@ -287,7 +342,7 @@ const Contactanos = () => {
 
               <Card className="bg-green-50">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold font-bold text-green-800 mb-3">
+                  <h3 className="font-bold text-green-800 mb-3">
                     RESPUESTA RÁPIDA GARANTIZADA
                   </h3>
                   <p className="font-bold text-black-700 text-sm">
