@@ -7,16 +7,24 @@ import CountryFlag from 'react-country-flag';
 const imagenesCarrusel = [
   "/Galeria/paisaje1.jpeg",
   "/Galeria/londres.jpg",
-  "/Galeria/miami.jpg",
-  "/Galeria/australia.webp",
+  "/Galeria/miami.jpeg",
+  "/Galeria/australia.jpeg",
   "/Galeria/nuevayork.jpeg",
   "/Galeria/roma.jpeg",
   "/Galeria/peru.jpeg",
+  "/Galeria/torreeiffel.jpeg",
 ];
 
 const imagenesIntro = [
   "/Galeria/logoturismo.jpeg",
-  "/Galeria/empresa9.jpg",
+  "/Galeria/empresa.jpeg",
+];
+
+// ─── Tamaños de imágenes de la intro ────────────────────────────────────────
+// Ajusta ancho y alto de cada imagen de la sección SERVICIOS INTERNACIONALES
+const introImageSizes = [
+  { width: 285, height: 144 }, // logoturismo.jpeg
+  { width: 285, height: 144 }, // empresa.jpeg
 ];
 
 const cuadros = [
@@ -24,7 +32,11 @@ const cuadros = [
     titulo: ["PLAN COMPLEMENTARIO DE SALUD", "COMPLEMENTARY HEALTH PLAN"],
     banderas: ["pt", "fr"],
     imagenes: ["/Galeria/holistico.jpeg", "/Galeria/holistico2.jpeg"],
-    imageOrientation: "horizontal",
+    // ── Ajusta ancho (width) y alto (height) en píxeles para cada imagen ──
+    imageSizes: [
+      { width: 224, height: 170 },
+      { width: 224, height: 170 },
+    ],
     descripcion: [
       [
         "A. MODALIDAD VIRTUAL – ATENCIÓN DESDE CUALQUIER LUGAR DEL MUNDO",
@@ -54,14 +66,19 @@ const cuadros = [
   {
     titulo: ["SERVICIOS EXEQUIALES – ALIANZA OLIVOS Y RENACER", "FUNERAL SERVICES – OLIVOS & RENACER ALLIANCE"],
     banderas: ["us", "cl"],
-    // 4 imágenes: izquierda extra, centro 1, centro 2, derecha extra
     imagenes: [
-      "/Galeria/repatriacion_extra.jpg",
+      "/Galeria/olivos3.png",
       "/Galeria/repatriacion.jpg",
       "/Galeria/expatriacion.jpg",
-      "/Galeria/expatriacion_extra.jpg",
+      "/Galeria/renacer.jpg",
     ],
-    imageOrientation: "vertical",
+    // ── 4 imágenes: lateral-izq, centro-1, centro-2, lateral-der ──
+    imageSizes: [
+      { width: 260, height: 208 }, // olivos3.png  (lateral izquierda)
+      { width: 260, height: 190 }, // repatriacion.jpg (centro 1)
+      { width: 260, height: 190 }, // expatriacion.jpg (centro 2)
+      { width: 450, height: 208 }, // renacer.jpg (lateral derecha)
+    ],
     descripcion: [
       [
         "A. PLAN ESTÁNDAR EN COLOMBIA",
@@ -79,11 +96,11 @@ const cuadros = [
         "• Transporte para acompañantes",
         "• Organización del servicio exequial",
         "• Destino final incluido",
-        "",
-        "B. PLAN DE REPATRIACIÓN",
-        "Por cada familia colombiana hay un ser querido viviendo en el exterior. Este plan garantiza la repatriación segura y digna del cuerpo a Colombia, protegiendo a la familia de los altos costos exequiales fuera del país, independientemente del estatus migratorio.",
       ],
       [
+        "B. PLAN DE REPATRIACIÓN",
+        "Por cada familia colombiana hay un ser querido viviendo en el exterior. Este plan garantiza la repatriación segura y digna del cuerpo a Colombia, protegiendo a la familia de los altos costos exequiales fuera del país, independientemente del estatus migratorio.",
+        "",
         "C. PLAN DE EXPATRIACIÓN",
         "Pensado para extranjeros que residen o visitan Colombia. Permite asegurar su protección en caso de fallecimiento en el país, garantizando un proceso responsable, humano y acorde a los requerimientos legales.",
         "",
@@ -99,7 +116,10 @@ const cuadros = [
     titulo: ["TRÁMITES PARA VIAJAR CON TU MASCOTA", "TRAVEL PROCEDURES WITH YOUR PET"],
     banderas: ["mx", "pa"],
     imagenes: ["/Galeria/mascota1.jpeg", "/Galeria/mascota2.jpeg"],
-    imageOrientation: "horizontal",
+    imageSizes: [
+      { width: 224, height: 230 },
+      { width: 224, height: 230 },
+    ],
     descripcion: [
       [
         "Viajar con tu mascota requiere cumplir regulaciones que varían según el país. MEDescuento, junto a la clínica DOG CENTER, te acompaña en el proceso para garantizar un viaje seguro y libre de contratiempos.",
@@ -116,15 +136,19 @@ const cuadros = [
   {
     titulo: ["TIPS DE ESPECIALISTAS – CUIDADOS ANTE CAMBIOS DE CLIMA", "SPECIALIST TIPS – CLIMATE CHANGE CARE"],
     banderas: ["pe", "ca"],
-    // 4 imágenes originales del array ya tenía 4: primavera, otoño, invierno, verano
-    // Ahora las colocamos como: lateral izq, centro 1, centro 2, lateral der
     imagenes: [
-      "/Galeria/primavera.avif",
+      "/Galeria/primavera.jpeg",
       "/Galeria/otoño.jpeg",
       "/Galeria/Invierno.jpeg",
       "/Galeria/verano.jpeg",
     ],
-    imageOrientation: "square",
+    // ── 4 imágenes cuadradas: lateral-izq, centro-1, centro-2, lateral-der ──
+    imageSizes: [
+      { width: 176, height: 176 }, // primavera (lateral izquierda)
+      { width: 176, height: 176 }, // otoño (centro 1)
+      { width: 176, height: 176 }, // invierno (centro 2)
+      { width: 176, height: 176 }, // verano (lateral derecha)
+    ],
     descripcion: [
       [
         "RECOMENDACIONES ESENCIALES PARA INVIERNO, VERANO, PRIMAVERA Y OTOÑO:",
@@ -153,7 +177,10 @@ const cuadros = [
     titulo: ["TIPS DE ALIMENTACIÓN EN OTROS PAÍSES", "NUTRITION TIPS ABROAD"],
     banderas: ["br", "gb"],
     imagenes: ["/Galeria/alimentacion.png", "/Galeria/alimentacion2.jpeg"],
-    imageOrientation: "horizontal",
+    imageSizes: [
+      { width: 224, height: 144 },
+      { width: 224, height: 144 },
+    ],
     descripcion: [
       [
         "CUIDA TU SALUD CUANDO ESTÉS EN EL EXTERIOR:",
@@ -183,7 +210,10 @@ const cuadros = [
     titulo: ["SI VISITAS COLOMBIA, TEN EN CUENTA:", "IF YOU VISIT COLOMBIA, KEEP IN MIND:"],
     banderas: ["ar", "au"],
     imagenes: ["/Galeria/colombia.jpg", "/Galeria/colombia2.png"],
-    imageOrientation: "horizontal",
+    imageSizes: [
+      { width: 224, height: 144 },
+      { width: 224, height: 144 },
+    ],
     descripcion: [
       [
         "• Clima de la ciudad que visitas",
@@ -204,14 +234,19 @@ const cuadros = [
   {
     titulo: ["CIUDADES Y CLÍNICAS DESTACADAS PARA TURISMO SALUDABLE", "TOP CITIES & CLINICS FOR HEALTHY TOURISM"],
     banderas: ["es", "fr"],
-    // 4 imágenes: lateral izq extra, cali, bogota, lateral der extra
     imagenes: [
       "/Galeria/medellin.jpg",
       "/Galeria/cali.jpg",
-      "/Galeria/bogota.avif",
+      "/Galeria/bogota.jpg",
       "/Galeria/cartagena.jpg",
     ],
-    imageOrientation: "horizontal",
+    // ── 4 imágenes: lateral-izq, centro-1, centro-2, lateral-der ──
+    imageSizes: [
+      { width: 224, height: 144 }, // medellin (lateral izquierda)
+      { width: 224, height: 144 }, // cali (centro 1)
+      { width: 224, height: 144 }, // bogota (centro 2)
+      { width: 224, height: 144 }, // cartagena (lateral derecha)
+    ],
     descripcion: [
       [
         "BOGOTÁ",
@@ -237,7 +272,10 @@ const cuadros = [
     titulo: ["SERVICIOS HOLÍSTICOS", "HOLISTIC SERVICES"],
     banderas: ["it", "pt"],
     imagenes: ["/Galeria/holistico3.jpeg", "/Galeria/holistico4.jpeg"],
-    imageOrientation: "vertical",
+    imageSizes: [
+      { width: 230, height: 208 },
+      { width: 230, height: 208 },
+    ],
     descripcion: [
       [
         "COMPLEMENTA TU BIENESTAR CON TERAPIAS ALTERNATIVAS:",
@@ -247,9 +285,9 @@ const cuadros = [
         "• Constelaciones familiares",
         "• Masajes terapéuticos",
         "• Barras de Access",
-        "• Acupuntura",
       ],
       [
+        "• Acupuntura",
         "• Reflexología",
         "• Moxibustión",
         "• Hipnosis",
@@ -268,13 +306,6 @@ const banderaISO = {
   br: 'BR', gb: 'GB', ar: 'AR', au: 'AU',
 };
 
-// Dimensiones según orientación
-const imageDimensions = {
-  horizontal: { width: "w-56", height: "h-36" },  // 224x144 — más ancha que alta
-  vertical:   { width: "w-36", height: "h-52" },  // 144x208 — más alta que ancha
-  square:     { width: "w-44", height: "h-44" },  // 176x176 — cuadrada
-};
-
 // Helper: renderiza un array de líneas como párrafos con negrita
 const RenderLineas = ({ lineas }) => (
   <div className="flex flex-col gap-1">
@@ -290,51 +321,56 @@ const RenderLineas = ({ lineas }) => (
   </div>
 );
 
-// Componente para la galería de imágenes de un cuadro
-const ImageGallery = ({ imagenes, titulo, orientation = "horizontal" }) => {
-  const dims = imageDimensions[orientation] || imageDimensions.horizontal;
-  const imgClass = `${dims.width} ${dims.height} object-cover rounded-lg border flex-shrink-0`;
+/**
+ * ImageGallery
+ * imageSizes: array de { width: number, height: number } — uno por imagen.
+ *   Si no se pasa, todas las imágenes usan 224×144 como fallback.
+ * Con 4 imágenes: la primera y la última se muestran ligeramente más pequeñas/opacas
+ * (escala 0.92) para el efecto "laterales", las centrales a tamaño completo.
+ */
+const ImageGallery = ({ imagenes, titulo, imageSizes = [] }) => {
+  const getSize = (i) => imageSizes[i] ?? { width: 224, height: 144 };
 
-  // 2 imágenes: centradas
   if (imagenes.length === 2) {
     return (
       <div className="flex gap-6 justify-center items-center bg-white py-6 flex-wrap">
-        {imagenes.map((src, i) => (
-          <img key={i} src={src} alt={`${titulo} - imagen ${i + 1}`} className={imgClass} />
-        ))}
+        {imagenes.map((src, i) => {
+          const { width, height } = getSize(i);
+          return (
+            <img
+              key={i}
+              src={src}
+              alt={`${titulo} - imagen ${i + 1}`}
+              className="object-cover rounded-lg border flex-shrink-0"
+              style={{ width, height }}
+            />
+          );
+        })}
       </div>
     );
   }
 
-  // 4 imágenes: primera y última en los laterales (más pequeñas/opacas), centro las 2 principales
   if (imagenes.length === 4) {
     return (
       <div className="flex gap-4 justify-center items-center bg-white py-6 flex-wrap">
-        {/* Imagen lateral izquierda — levemente más pequeña y opaca */}
-        <img
-          src={imagenes[0]}
-          alt={`${titulo} - imagen lateral izquierda`}
-          className={`${dims.width} ${dims.height} object-cover rounded-lg border flex-shrink-0 opacity-75 scale-95`}
-          style={{ transform: "scale(0.92)" }}
-        />
-        {/* Imágenes centrales principales */}
-        <img
-          src={imagenes[1]}
-          alt={`${titulo} - imagen principal 1`}
-          className={imgClass}
-        />
-        <img
-          src={imagenes[2]}
-          alt={`${titulo} - imagen principal 2`}
-          className={imgClass}
-        />
-        {/* Imagen lateral derecha */}
-        <img
-          src={imagenes[3]}
-          alt={`${titulo} - imagen lateral derecha`}
-          className={`${dims.width} ${dims.height} object-cover rounded-lg border flex-shrink-0 opacity-75`}
-          style={{ transform: "scale(0.92)" }}
-        />
+        {imagenes.map((src, i) => {
+          const { width, height } = getSize(i);
+          const isLateral = i === 0 || i === 3;
+          return (
+            <img
+              key={i}
+              src={src}
+              alt={`${titulo} - imagen ${i + 1}`}
+              className="object-cover rounded-lg border flex-shrink-0"
+              style={{
+                width,
+                height,
+                opacity: isLateral ? 0.75 : 1,
+                transform: isLateral ? "scale(0.92)" : "none",
+              }}
+            />
+          );
+        })}
       </div>
     );
   }
@@ -342,9 +378,18 @@ const ImageGallery = ({ imagenes, titulo, orientation = "horizontal" }) => {
   // Fallback: mostrar todas centradas
   return (
     <div className="flex gap-4 justify-center items-center bg-white py-6 flex-wrap">
-      {imagenes.map((src, i) => (
-        <img key={i} src={src} alt={`${titulo} - imagen ${i + 1}`} className={imgClass} />
-      ))}
+      {imagenes.map((src, i) => {
+        const { width, height } = getSize(i);
+        return (
+          <img
+            key={i}
+            src={src}
+            alt={`${titulo} - imagen ${i + 1}`}
+            className="object-cover rounded-lg border flex-shrink-0"
+            style={{ width, height }}
+          />
+        );
+      })}
     </div>
   );
 };
@@ -370,84 +415,50 @@ const HealthyTourismSection = () => {
   return (
     <section className="bg-gradient-to-b from-slate-50 to-white">
 
-{/* ── CARRUSEL ── */}
-<div className="relative h-[480px] w-full overflow-hidden mb-12">
-
-  {/* Fondo borroso */}
-  <div
-    className="absolute inset-0 bg-cover bg-center blur-xl scale-110"
-    style={{
-      backgroundImage: `url(${imagenesCarrusel[currentSlide]})`,
-      filter: "blur(22px)",
-    }}
-  />
-
-  {/* Capa oscura suave para que resalte la imagen principal */}
-  <div className="absolute inset-0 bg-black/20" />
-
-  {/* Slides */}
-  <div
-    className="relative flex h-full transition-transform duration-700 ease-in-out"
-    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-  >
-    {imagenesCarrusel.map((src, i) => (
-      <div
-        key={i}
-        className="min-w-full h-full flex items-center justify-center"
-      >
-        <img
-          src={src}
-          alt={`slide-${i}`}
-          className="max-h-full w-auto object-contain drop-shadow-xl"
+      {/* ── CARRUSEL ── */}
+      <div className="relative h-[480px] w-full overflow-hidden mb-12">
+        <div
+          className="absolute inset-0 bg-cover bg-center blur-xl scale-110"
+          style={{
+            backgroundImage: `url(${imagenesCarrusel[currentSlide]})`,
+            filter: "blur(22px)",
+          }}
         />
+        <div className="absolute inset-0 bg-black/20" />
+        <div
+          className="relative flex h-full transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {imagenesCarrusel.map((src, i) => (
+            <div key={i} className="min-w-full h-full flex items-center justify-center">
+              <img
+                src={src}
+                alt={`slide-${i}`}
+                className="max-h-full w-auto object-contain drop-shadow-xl"
+              />
+            </div>
+          ))}
+        </div>
+        <button
+          onClick={() => { goTo(currentSlide - 1); startAuto(); }}
+          className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl transition"
+          aria-label="Anterior"
+        >‹</button>
+        <button
+          onClick={() => { goTo(currentSlide + 1); startAuto(); }}
+          className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl transition"
+          aria-label="Siguiente"
+        >›</button>
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+          {imagenesCarrusel.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { goTo(i); startAuto(); }}
+              className={`w-3 h-3 rounded-full transition-all ${i === currentSlide ? "bg-white scale-110" : "bg-white/40"}`}
+            />
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-
-  {/* Botón anterior */}
-  <button
-    onClick={() => {
-      goTo(currentSlide - 1);
-      startAuto();
-    }}
-    className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 
-               text-white rounded-full w-10 h-10 flex items-center justify-center 
-               text-2xl transition"
-    aria-label="Anterior"
-  >
-    ‹
-  </button>
-
-  {/* Botón siguiente */}
-  <button
-    onClick={() => {
-      goTo(currentSlide + 1);
-      startAuto();
-    }}
-    className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 
-               text-white rounded-full w-10 h-10 flex items-center justify-center 
-               text-2xl transition"
-    aria-label="Siguiente"
-  >
-    ›
-  </button>
-
-  {/* Indicadores */}
-  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-    {imagenesCarrusel.map((_, i) => (
-      <button
-        key={i}
-        onClick={() => {
-          goTo(i);
-          startAuto();
-        }}
-        className={`w-3 h-3 rounded-full transition-all ${
-          i === currentSlide ? "bg-white scale-110" : "bg-white/40"
-        }`}
-      />
-    ))}
-  </div>
-</div>
 
       {/* ── CUADROS ── */}
       <div className="container mx-auto px-4 py-10">
@@ -465,11 +476,20 @@ const HealthyTourismSection = () => {
                 INTERNATIONAL SERVICES
               </h4>
             </div>
+            {/* ── Imágenes de la intro con tamaños individuales ── */}
             <div className="flex gap-6 justify-center items-center bg-white py-6">
-              <img src={imagenesIntro[0]} alt="Servicios internacionales 1"
-                className="w-56 h-36 object-cover rounded-lg border" />
-              <img src={imagenesIntro[1]} alt="Servicios internacionales 2"
-                className="w-56 h-36 object-cover rounded-lg border" />
+              {imagenesIntro.map((src, i) => {
+                const { width, height } = introImageSizes[i] ?? { width: 224, height: 144 };
+                return (
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`Servicios internacionales ${i + 1}`}
+                    className="object-cover rounded-lg border"
+                    style={{ width, height }}
+                  />
+                );
+              })}
             </div>
             <div className="p-6 grid grid-cols-2 gap-8">
               <div className="flex flex-col gap-1">
@@ -517,11 +537,10 @@ const HealthyTourismSection = () => {
                 </h4>
               </div>
 
-              {/* Galería adaptativa según orientación y cantidad de imágenes */}
               <ImageGallery
                 imagenes={cuadro.imagenes}
                 titulo={cuadro.titulo[0]}
-                orientation={cuadro.imageOrientation || "horizontal"}
+                imageSizes={cuadro.imageSizes}
               />
 
               <div className="p-6 grid grid-cols-2 gap-8">
