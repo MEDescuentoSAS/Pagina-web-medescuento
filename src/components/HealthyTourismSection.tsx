@@ -20,11 +20,10 @@ const imagenesIntro = [
   "/Galeria/empresa.jpeg",
 ];
 
-// ─── Tamaños de imágenes de la intro ────────────────────────────────────────
-// Ajusta ancho y alto de cada imagen de la sección SERVICIOS INTERNACIONALES
+// ─── Tamaños de imágenes de la intro (solo aplican en desktop) ──────────────
 const introImageSizes = [
-  { width: 285, height: 144 }, // logoturismo.jpeg
-  { width: 285, height: 144 }, // empresa.jpeg
+  { width: 285, height: 144 },
+  { width: 285, height: 144 },
 ];
 
 const cuadros = [
@@ -32,7 +31,6 @@ const cuadros = [
     titulo: ["PLAN COMPLEMENTARIO DE SALUD", "COMPLEMENTARY HEALTH PLAN"],
     banderas: ["pt", "fr"],
     imagenes: ["/Galeria/holistico.jpeg", "/Galeria/holistico2.jpeg"],
-    // ── Ajusta ancho (width) y alto (height) en píxeles para cada imagen ──
     imageSizes: [
       { width: 224, height: 170 },
       { width: 224, height: 170 },
@@ -72,12 +70,11 @@ const cuadros = [
       "/Galeria/expatriacion.jpg",
       "/Galeria/renacer.jpg",
     ],
-    // ── 4 imágenes: lateral-izq, centro-1, centro-2, lateral-der ──
     imageSizes: [
-      { width: 260, height: 208 }, // olivos3.png  (lateral izquierda)
-      { width: 260, height: 190 }, // repatriacion.jpg (centro 1)
-      { width: 260, height: 190 }, // expatriacion.jpg (centro 2)
-      { width: 450, height: 208 }, // renacer.jpg (lateral derecha)
+      { width: 260, height: 208 },
+      { width: 260, height: 190 },
+      { width: 260, height: 190 },
+      { width: 450, height: 208 },
     ],
     descripcion: [
       [
@@ -142,12 +139,11 @@ const cuadros = [
       "/Galeria/Invierno.jpeg",
       "/Galeria/verano.jpeg",
     ],
-    // ── 4 imágenes cuadradas: lateral-izq, centro-1, centro-2, lateral-der ──
     imageSizes: [
-      { width: 176, height: 176 }, // primavera (lateral izquierda)
-      { width: 176, height: 176 }, // otoño (centro 1)
-      { width: 176, height: 176 }, // invierno (centro 2)
-      { width: 176, height: 176 }, // verano (lateral derecha)
+      { width: 176, height: 176 },
+      { width: 176, height: 176 },
+      { width: 176, height: 176 },
+      { width: 176, height: 176 },
     ],
     descripcion: [
       [
@@ -209,10 +205,10 @@ const cuadros = [
   {
     titulo: ["SI VISITAS COLOMBIA, TEN EN CUENTA:", "IF YOU VISIT COLOMBIA, KEEP IN MIND:"],
     banderas: ["ar", "au"],
-    imagenes: ["/Galeria/colombia.jpg", "/Galeria/colombia2.png"],
+    imagenes: ["/Galeria/colombia.jpeg", "/Galeria/colombia2.jpeg"],
     imageSizes: [
-      { width: 224, height: 144 },
-      { width: 224, height: 144 },
+      { width: 224, height: 290 },
+      { width: 224, height: 300 },
     ],
     descripcion: [
       [
@@ -240,12 +236,11 @@ const cuadros = [
       "/Galeria/bogota.jpg",
       "/Galeria/cartagena.jpg",
     ],
-    // ── 4 imágenes: lateral-izq, centro-1, centro-2, lateral-der ──
     imageSizes: [
-      { width: 224, height: 144 }, // medellin (lateral izquierda)
-      { width: 224, height: 144 }, // cali (centro 1)
-      { width: 224, height: 144 }, // bogota (centro 2)
-      { width: 224, height: 144 }, // cartagena (lateral derecha)
+      { width: 224, height: 144 },
+      { width: 224, height: 144 },
+      { width: 224, height: 144 },
+      { width: 224, height: 144 },
     ],
     descripcion: [
       [
@@ -306,14 +301,14 @@ const banderaISO = {
   br: 'BR', gb: 'GB', ar: 'AR', au: 'AU',
 };
 
-// Helper: renderiza un array de líneas como párrafos con negrita
+// ─── Helper: líneas de texto ─────────────────────────────────────────────────
 const RenderLineas = ({ lineas }) => (
   <div className="flex flex-col gap-1">
     {lineas.map((linea, i) =>
       linea === "" ? (
         <div key={i} className="h-3" />
       ) : (
-        <p key={i} className="text-base leading-snug font-bold text-gray-800 m-0">
+        <p key={i} className="text-sm sm:text-base leading-snug font-bold text-gray-800 m-0">
           {linea}
         </p>
       )
@@ -321,79 +316,80 @@ const RenderLineas = ({ lineas }) => (
   </div>
 );
 
-/**
- * ImageGallery
- * imageSizes: array de { width: number, height: number } — uno por imagen.
- *   Si no se pasa, todas las imágenes usan 224×144 como fallback.
- * Con 4 imágenes: la primera y la última se muestran ligeramente más pequeñas/opacas
- * (escala 0.92) para el efecto "laterales", las centrales a tamaño completo.
- */
+// ─── Galería responsive ──────────────────────────────────────────────────────
+// Móvil: grid 2 columnas con imágenes que llenan el ancho disponible
+// Desktop: layout horizontal original con tamaños exactos del array imageSizes
 const ImageGallery = ({ imagenes, titulo, imageSizes = [] }) => {
   const getSize = (i) => imageSizes[i] ?? { width: 224, height: 144 };
 
-  if (imagenes.length === 2) {
-    return (
-      <div className="flex gap-6 justify-center items-center bg-white py-6 flex-wrap">
-        {imagenes.map((src, i) => {
-          const { width, height } = getSize(i);
-          return (
-            <img
-              key={i}
-              src={src}
-              alt={`${titulo} - imagen ${i + 1}`}
-              className="object-cover rounded-lg border flex-shrink-0"
-              style={{ width, height }}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-
-  if (imagenes.length === 4) {
-    return (
-      <div className="flex gap-4 justify-center items-center bg-white py-6 flex-wrap">
-        {imagenes.map((src, i) => {
-          const { width, height } = getSize(i);
-          const isLateral = i === 0 || i === 3;
-          return (
-            <img
-              key={i}
-              src={src}
-              alt={`${titulo} - imagen ${i + 1}`}
-              className="object-cover rounded-lg border flex-shrink-0"
-              style={{
-                width,
-                height,
-                opacity: isLateral ? 0.75 : 1,
-                transform: isLateral ? "scale(0.92)" : "none",
-              }}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-
-  // Fallback: mostrar todas centradas
   return (
-    <div className="flex gap-4 justify-center items-center bg-white py-6 flex-wrap">
-      {imagenes.map((src, i) => {
-        const { width, height } = getSize(i);
-        return (
+    <>
+      {/* ── MÓVIL ── */}
+      <div className="grid grid-cols-2 gap-3 px-4 py-4 sm:hidden bg-white">
+        {imagenes.map((src, i) => (
           <img
             key={i}
             src={src}
             alt={`${titulo} - imagen ${i + 1}`}
-            className="object-cover rounded-lg border flex-shrink-0"
-            style={{ width, height }}
+            className="w-full h-32 object-cover rounded-lg border"
           />
-        );
-      })}
-    </div>
+        ))}
+      </div>
+
+      {/* ── DESKTOP: 2 imágenes ── */}
+      {imagenes.length === 2 && (
+        <div className="hidden sm:flex gap-6 justify-center items-center bg-white py-6 flex-wrap">
+          {imagenes.map((src, i) => {
+            const { width, height } = getSize(i);
+            return (
+              <img key={i} src={src} alt={`${titulo} - imagen ${i + 1}`}
+                className="object-cover rounded-lg border flex-shrink-0"
+                style={{ width, height }}
+              />
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── DESKTOP: 4 imágenes con laterales opacas ── */}
+      {imagenes.length === 4 && (
+        <div className="hidden sm:flex gap-4 justify-center items-center bg-white py-6 flex-wrap">
+          {imagenes.map((src, i) => {
+            const { width, height } = getSize(i);
+            const isLateral = i === 0 || i === 3;
+            return (
+              <img key={i} src={src} alt={`${titulo} - imagen ${i + 1}`}
+                className="object-cover rounded-lg border flex-shrink-0"
+                style={{
+                  width, height,
+                  opacity: isLateral ? 0.75 : 1,
+                  transform: isLateral ? "scale(0.92)" : "none",
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── DESKTOP: fallback para otras cantidades ── */}
+      {imagenes.length !== 2 && imagenes.length !== 4 && (
+        <div className="hidden sm:flex gap-4 justify-center items-center bg-white py-6 flex-wrap">
+          {imagenes.map((src, i) => {
+            const { width, height } = getSize(i);
+            return (
+              <img key={i} src={src} alt={`${titulo} - imagen ${i + 1}`}
+                className="object-cover rounded-lg border flex-shrink-0"
+                style={{ width, height }}
+              />
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 };
 
+// ─── Componente principal ────────────────────────────────────────────────────
 const HealthyTourismSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const timerRef = useRef(null);
@@ -416,13 +412,10 @@ const HealthyTourismSection = () => {
     <section className="bg-gradient-to-b from-slate-50 to-white">
 
       {/* ── CARRUSEL ── */}
-      <div className="relative h-[480px] w-full overflow-hidden mb-12">
+      <div className="relative h-[220px] sm:h-[480px] w-full overflow-hidden mb-6 sm:mb-12">
         <div
-          className="absolute inset-0 bg-cover bg-center blur-xl scale-110"
-          style={{
-            backgroundImage: `url(${imagenesCarrusel[currentSlide]})`,
-            filter: "blur(22px)",
-          }}
+          className="absolute inset-0 bg-cover bg-center scale-110"
+          style={{ backgroundImage: `url(${imagenesCarrusel[currentSlide]})`, filter: "blur(22px)" }}
         />
         <div className="absolute inset-0 bg-black/20" />
         <div
@@ -431,86 +424,84 @@ const HealthyTourismSection = () => {
         >
           {imagenesCarrusel.map((src, i) => (
             <div key={i} className="min-w-full h-full flex items-center justify-center">
-              <img
-                src={src}
-                alt={`slide-${i}`}
-                className="max-h-full w-auto object-contain drop-shadow-xl"
-              />
+              <img src={src} alt={`slide-${i}`} className="max-h-full w-auto object-contain drop-shadow-xl" />
             </div>
           ))}
         </div>
         <button
           onClick={() => { goTo(currentSlide - 1); startAuto(); }}
-          className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl transition"
+          className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-xl sm:text-2xl transition"
           aria-label="Anterior"
         >‹</button>
         <button
           onClick={() => { goTo(currentSlide + 1); startAuto(); }}
-          className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center text-2xl transition"
+          className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-xl sm:text-2xl transition"
           aria-label="Siguiente"
         >›</button>
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        <div className="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2 z-20">
           {imagenesCarrusel.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => { goTo(i); startAuto(); }}
-              className={`w-3 h-3 rounded-full transition-all ${i === currentSlide ? "bg-white scale-110" : "bg-white/40"}`}
+            <button key={i} onClick={() => { goTo(i); startAuto(); }}
+              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all ${i === currentSlide ? "bg-white scale-110" : "bg-white/40"}`}
             />
           ))}
         </div>
       </div>
 
       {/* ── CUADROS ── */}
-      <div className="container mx-auto px-4 py-10">
-        <div className="grid gap-8">
+      <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-10">
+        <div className="grid gap-5 sm:gap-8">
 
           {/* Primer cuadro: Servicios Internacionales */}
           <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-            <div className="bg-[#43d9cb] p-6">
-              <h4 className="flex items-center gap-3 text-2xl font-bold text-green-800 m-0 uppercase">
+            <div className="bg-[#43d9cb] p-4 sm:p-6">
+              <h4 className="flex flex-wrap items-center gap-2 text-base sm:text-2xl font-bold text-green-800 m-0 uppercase leading-tight">
                 SERVICIOS INTERNACIONALES
-                <span className="flex gap-1 mx-2">
-                  <CountryFlag countryCode="ES" svg style={{ width: '28px', height: '20px', borderRadius: '4px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }} title="España" />
-                  <CountryFlag countryCode="IT" svg style={{ width: '28px', height: '20px', borderRadius: '4px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }} title="Italia" />
+                <span className="flex gap-1">
+                  <CountryFlag countryCode="ES" svg style={{ width: '22px', height: '16px', borderRadius: '3px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }} title="España" />
+                  <CountryFlag countryCode="IT" svg style={{ width: '22px', height: '16px', borderRadius: '3px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }} title="Italia" />
                 </span>
                 INTERNATIONAL SERVICES
               </h4>
             </div>
-            {/* ── Imágenes de la intro con tamaños individuales ── */}
-            <div className="flex gap-6 justify-center items-center bg-white py-6">
+
+            {/* Imágenes intro */}
+            <div className="grid grid-cols-2 gap-3 px-4 py-4 sm:hidden bg-white">
+              {imagenesIntro.map((src, i) => (
+                <img key={i} src={src} alt={`Servicios internacionales ${i + 1}`}
+                  className="w-full h-32 object-cover rounded-lg border" />
+              ))}
+            </div>
+            <div className="hidden sm:flex gap-6 justify-center items-center bg-white py-6">
               {imagenesIntro.map((src, i) => {
                 const { width, height } = introImageSizes[i] ?? { width: 224, height: 144 };
                 return (
-                  <img
-                    key={i}
-                    src={src}
-                    alt={`Servicios internacionales ${i + 1}`}
-                    className="object-cover rounded-lg border"
-                    style={{ width, height }}
-                  />
+                  <img key={i} src={src} alt={`Servicios internacionales ${i + 1}`}
+                    className="object-cover rounded-lg border" style={{ width, height }} />
                 );
               })}
             </div>
-            <div className="p-6 grid grid-cols-2 gap-8">
+
+            {/* Texto */}
+            <div className="p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
               <div className="flex flex-col gap-1">
-                <p className="text-base leading-snug font-bold text-gray-800 m-0">
+                <p className="text-sm sm:text-base leading-snug font-bold text-gray-800 m-0">
                   Soluciones en salud y bienestar para colombianos dentro y fuera del país
                 </p>
                 <div className="h-3" />
-                <p className="text-base leading-snug font-bold text-gray-800 m-0">
+                <p className="text-sm sm:text-base leading-snug font-bold text-gray-800 m-0">
                   En MEDescuento contamos con más de 13 años de experiencia, ofreciendo alternativas accesibles y confiables en salud y bienestar para miles de familias en Colombia y el exterior.
                 </p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-base leading-snug font-bold text-gray-800 m-0">
+                <p className="text-sm sm:text-base leading-snug font-bold text-gray-800 m-0">
                   Nuestro propósito es facilitar el acceso a profesionales certificados, con tarifas competitivas y procesos simples, especialmente para quienes viven fuera del país y necesitan atención médica oportuna sin costos elevados.
                 </p>
                 <div className="h-3" />
-                <p className="text-base leading-snug font-bold text-gray-800 m-0">
+                <p className="text-sm sm:text-base leading-snug font-bold text-gray-800 m-0">
                   Gracias a nuestras teleconsultas internacionales, hoy puedes recibir orientación médica profesional, obtener fórmulas prescritas directamente a tu WhatsApp o correo electrónico, y complementar tus tratamientos sin importar en qué país te encuentres.
                 </p>
                 <div className="h-3" />
-                <p className="text-base leading-snug font-bold text-gray-800 m-0">
+                <p className="text-sm sm:text-base leading-snug font-bold text-gray-800 m-0">
                   Si viajas a Colombia para visitar a tu familia, también puedes programar tus citas con anticipación, asegurando atención prioritaria y aprovechando al máximo tu tiempo en el país.
                 </p>
               </div>
@@ -520,16 +511,16 @@ const HealthyTourismSection = () => {
           {/* Resto de cuadros */}
           {cuadros.map((cuadro, idx) => (
             <Card key={idx} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="bg-[#43d9cb] p-6">
-                <h4 className="flex items-center gap-3 text-2xl font-bold text-green-800 m-0 uppercase">
+              <div className="bg-[#43d9cb] p-4 sm:p-6">
+                <h4 className="flex flex-wrap items-center gap-2 text-base sm:text-2xl font-bold text-green-800 m-0 uppercase leading-tight">
                   {cuadro.titulo[0]}
                   {cuadro.banderas && (
-                    <span className="flex gap-1 mx-2">
+                    <span className="flex gap-1">
                       <CountryFlag countryCode={banderaISO[cuadro.banderas[0]]} svg
-                        style={{ width: '28px', height: '20px', borderRadius: '4px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }}
+                        style={{ width: '22px', height: '16px', borderRadius: '3px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }}
                         title={cuadro.banderas[0]} />
                       <CountryFlag countryCode={banderaISO[cuadro.banderas[1]]} svg
-                        style={{ width: '28px', height: '20px', borderRadius: '4px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }}
+                        style={{ width: '22px', height: '16px', borderRadius: '3px', boxShadow: '0 1px 3px #0002', border: '1px solid #ccc' }}
                         title={cuadro.banderas[1]} />
                     </span>
                   )}
@@ -543,14 +534,17 @@ const HealthyTourismSection = () => {
                 imageSizes={cuadro.imageSizes}
               />
 
-              <div className="p-6 grid grid-cols-2 gap-8">
+              {/* Texto — 1 col en móvil, 2 col en desktop */}
+              <div className="p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                 <RenderLineas lineas={cuadro.descripcion[0]} />
                 <RenderLineas lineas={cuadro.descripcion[1]} />
               </div>
+
               {cuadro.boton && (
-                <div className="pb-6 flex justify-center">
+                <div className="pb-5 sm:pb-6 px-4 sm:px-0 flex justify-center">
                   <a href="https://casaholisticaananda.com" target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="bg-[#43d9cb] text-green-800 font-bold hover:bg-[#36b6a8]">
+                    <Button size="lg"
+                      className="bg-[#43d9cb] text-green-800 font-bold hover:bg-[#36b6a8] text-sm sm:text-base px-4 sm:px-6 whitespace-normal h-auto py-3 text-center">
                       👉 CONOCE MÁS EN CASA HOLÍSTICA ANANDA
                     </Button>
                   </a>
