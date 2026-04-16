@@ -154,7 +154,7 @@ const cuadros = [
     imagenes: [
       "/Galeria/primavera.jpeg",
       "/Galeria/otoño.jpeg",
-      "/Galeria/invierno.jpeg",
+      "/Galeria/invierno.jpg",
       "/Galeria/verano.jpeg",
     ],
     imageSizes: [
