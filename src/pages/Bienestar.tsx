@@ -3,6 +3,19 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Flower2, Sparkles, Music, PartyPopper, Zap } from "lucide-react";
 
+// ─── Logo pequeño para los encabezados ──────────────────────────────────────
+const LogoHeader = () => (
+  <img
+    src="/Galeria/logoturismo.jpeg"
+    alt="Logo MEDescuento"
+    className="flex-shrink-0 object-cover rounded"
+    style={{
+      width: 'clamp(60px, 12vw, 90px)',
+      height: 'clamp(28px, 5vw, 44px)',
+    }}
+  />
+);
+
 const Bienestar = () => {
   const activities = [
     {
@@ -57,8 +70,10 @@ const Bienestar = () => {
                 <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                   <CardHeader className="bg-[#43d9cb]">
                     <CardTitle className="flex items-center gap-3 text-2xl font-bold text-green-800">
+                      {/* ── LOGO ── */}
+                      <LogoHeader />
                       <activity.icon 
-                        className={`w-8 h-8 ${
+                        className={`w-8 h-8 flex-shrink-0 ${
                           index === 0 ? 'text-purple-600' : 
                           index === 1 ? 'text-pink-500' : 
                           index === 2 ? 'text-fuchsia-600' : 
@@ -77,7 +92,7 @@ const Bienestar = () => {
                       <h4 className="font-semibold font-bold text-green-800 mb-3 md:col-span-2">Beneficios:</h4>
                       {activity.benefits.map((benefit, benefitIndex) => (
                         <div key={benefitIndex} className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                          <div className="w-2 h-2 bg-green-600 rounded-full flex-shrink-0"></div>
                           <span className="font-bold text-black-700">{benefit}</span>
                         </div>
                       ))}
@@ -85,7 +100,6 @@ const Bienestar = () => {
                   </CardContent>
                 </Card>
 
-                {/* Image sections remain unchanged */}
                 {index === 0 && (
                   <div className="mt-8 mb-4 flex justify-center">
                     <div className="grid md:grid-cols-2 gap-4 max-w-4xl w-full">

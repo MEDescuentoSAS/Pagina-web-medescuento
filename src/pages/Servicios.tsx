@@ -3,6 +3,19 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, Shield, GraduationCap, Activity, Building } from "lucide-react";
 
+// ─── Logo pequeño para los encabezados ──────────────────────────────────────
+const LogoHeader = () => (
+  <img
+    src="/Galeria/logoturismo.jpeg"
+    alt="Logo MEDescuento"
+    className="flex-shrink-0 object-cover rounded"
+    style={{
+      width: 'clamp(60px, 12vw, 90px)',
+      height: 'clamp(28px, 5vw, 44px)',
+    }}
+  />
+);
+
 const Servicios = () => {
   const services = [
     {
@@ -80,7 +93,9 @@ const Servicios = () => {
                 <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                   <CardHeader className="bg-[#43d9cb]">
                     <CardTitle className="flex items-center gap-3 text-2xl font-bold text-green-800">
-                      <service.icon className={`w-8 h-8 ${
+                      {/* ── LOGO ── */}
+                      <LogoHeader />
+                      <service.icon className={`w-8 h-8 flex-shrink-0 ${
                         index === 0 ? 'text-purple-600' : 
                         index === 1 ? 'text-red-600' : 
                         index === 2 ? 'text-yellow-500' : 
@@ -97,7 +112,7 @@ const Servicios = () => {
                     <div className="grid md:grid-cols-2 gap-3">
                       {service.features.map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                          <div className="w-2 h-2 bg-green-600 rounded-full flex-shrink-0"></div>
                           <span className="font-bold text-black-700">{feature}</span>
                         </div>
                       ))}
@@ -133,7 +148,6 @@ const Servicios = () => {
                   </div>
                 )}
                 
-                {/* Medical Guide Image after Plan Complementario de Salud */}
                 {index === 1 && (
                   <div className="mt-8 mb-4 flex justify-center">
                     <div className="max-w-3xl w-full">
@@ -151,7 +165,6 @@ const Servicios = () => {
                   </div>
                 )}
 
-                {/* Images for other services */}
                 {index === 2 && (
                   <div className="mt-8 mb-4 flex justify-center">
                     <div className="grid md:grid-cols-2 gap-4 max-w-4xl w-full">
