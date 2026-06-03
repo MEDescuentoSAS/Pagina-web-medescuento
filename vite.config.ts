@@ -10,6 +10,9 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  preview: {
+    allowedHosts: ['www.medescuento.com'],
+  },
   plugins: [
     react(),
     mode === 'development' &&
