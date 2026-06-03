@@ -135,18 +135,18 @@ const HeroSection = () => {
               </Card>
 
               {/* Mapa */}
-              <Card className="bg-hero-bg/80 border-accent border-2 p-3 flex flex-col justify-between text-white text-center hover:scale-105 transition-transform h-48 md:h-64">
+              <Card className="bg-hero-bg/80 border-accent border-2 p-3 flex flex-col justify-between text-white text-center hover:scale-105 transition-transform h-auto min-h-[320px]">
                 <h3 className="text-lg font-bold">Nuestra Ubicación</h3>
-                <div className="flex-1 flex items-center justify-center">
+                <div className="flex-1 flex items-center justify-center min-h-[240px] md:min-h-[300px]">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.1942622415304!2d-75.65653328939742!3d4.559058242849977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e38f5f16926682d%3A0xa603f0d7104df83f!2sMEDescuento!5e0!3m2!1ses!2sco!4v1755476797875!5m2!1ses!2sco"
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
+                    style={{ border: 0, minHeight: '240px' }}
                     allowFullScreen={true}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="rounded-lg"
+                    className="rounded-lg w-full h-full"
                   ></iframe>
                 </div>
                 <p className="opacity-90 text-xs mt-2">Búscanos en la sección Contacto</p>

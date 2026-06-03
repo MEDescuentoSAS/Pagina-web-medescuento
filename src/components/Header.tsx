@@ -22,11 +22,13 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <img 
-              src={medescuentoLogo} 
-              alt="MEDescuento Logo" 
-              className="h-20 w-auto"
-            />
+            <Link to="/" onClick={() => setIsMenuOpen(false)}>
+              <img 
+                src={medescuentoLogo} 
+                alt="MEDescuento Logo" 
+                className="h-20 w-auto"
+              />
+            </Link>
           </div>
           
           <div className="hidden md:flex items-center space-x-8 text-sm">
